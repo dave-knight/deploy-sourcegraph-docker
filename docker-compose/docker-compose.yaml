@@ -126,8 +126,8 @@ services:
   sourcegraph-frontend-0:
     container_name: sourcegraph-frontend-0
     image: 'index.docker.io/sourcegraph/frontend:insiders@sha256:42bdb4d375adff51c00195d435c836f5066fe9ef15fd9c24b567c659c56c2099'
-    cpus: 4
-    mem_limit: '8g'
+    cpus: 2
+    mem_limit: '4g'
     environment:
       - DEPLOY_TYPE=docker-compose
       - JAEGER_AGENT_HOST=jaeger
@@ -169,8 +169,8 @@ services:
   sourcegraph-frontend-internal:
     container_name: sourcegraph-frontend-internal
     image: 'index.docker.io/sourcegraph/frontend:insiders@sha256:42bdb4d375adff51c00195d435c836f5066fe9ef15fd9c24b567c659c56c2099'
-    cpus: 4
-    mem_limit: '8g'
+    cpus: 2
+    mem_limit: '4g'
     environment:
       - DEPLOY_TYPE=docker-compose
       - PGHOST=pgsql
@@ -239,7 +239,7 @@ services:
     container_name: zoekt-indexserver-0
     image: 'index.docker.io/sourcegraph/search-indexer:insiders@sha256:461625546e3636a1abd38b94b3accea6b8d1ae92924b738cc7b41f5e8f74bb45'
     cpus: 8
-    mem_limit: '16g'
+    mem_limit: '8g'
     environment:
       - 'HOSTNAME=zoekt-webserver-0:6070'
       - 'SRC_FRONTEND_INTERNAL=http://sourcegraph-frontend-internal:3090'
@@ -259,8 +259,8 @@ services:
   zoekt-webserver-0:
     container_name: zoekt-webserver-0
     image: 'index.docker.io/sourcegraph/indexed-searcher:insiders@sha256:9d7f9a49ba16dae3c2e0ae27972b02421d65c60682ea107633dac6ab286228fb'
-    cpus: 8
-    mem_limit: '50g'
+    cpus: 2
+    mem_limit: '8g'
     environment:
       - 'HOSTNAME=zoekt-webserver-0:6070'
     healthcheck:
@@ -420,7 +420,7 @@ services:
     container_name: symbols-0
     image: 'index.docker.io/sourcegraph/symbols:insiders@sha256:28ee85a4ad008ba1d54125d70c75a59269fee048966a32c235a7c8ab5a88bd3b'
     cpus: 2
-    mem_limit: '4g'
+    mem_limit: '2g'
     environment:
       - 'SRC_FRONTEND_INTERNAL=sourcegraph-frontend-internal:3090'
       - JAEGER_AGENT_HOST=jaeger
